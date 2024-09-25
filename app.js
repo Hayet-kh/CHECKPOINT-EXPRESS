@@ -1,15 +1,8 @@
-/*** 
-    PROBLEM TO SOLVE : ASK SERINE
-    --middleware to check time--
-        app.use((req, res, next) => {}) --> Problem : i get twice the message : The service is available, when i use route /, /services, /contact
-        app.use('/service or /contact', (req, res, next) => {}) --> NO problem, i get once the message
-***/
-
 const express = require("express");
 const path = require("path");
 
 const app = express();
-const port = 3000;
+const port = 8000;
 
 // Function to get the day of the week from a date string
 function getDayOfWeek(dateString) {
@@ -35,20 +28,6 @@ app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 
 // Middleware to check the time for the log - availibility of the app
-/*app.use((req, res, next) => {
-	let timestamp = Date.now(); // Get the current timestamp
-	let availableDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-	let availableHours = [9, 10, 11, 12, 13, 14, 15, 16];
-	let day = getDayOfWeek(timestamp);
-	let hour = new Date(timestamp).getHours();
-
-	if (availableDays.includes(day) && availableHours.includes(hour)) {
-		console.log("The service is available"); // Continue to the next middleware or route handler
-		next();
-	} else {
-		next("The service is not available"); // Pass error to the error-handling middleware
-	}
-});*/
 const availibility = (req, res, next) => {
 	let timestamp = Date.now(); // Get the current timestamp
 	let availableDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
@@ -64,18 +43,20 @@ const availibility = (req, res, next) => {
 	}
 };
 
+app.use(availibility);
+
 // Define the route for the home page
-app.get("/", availibility, (req, res) => {
+app.get("/", (req, res) => {
 	res.render("index");
 });
 
 // Define the route for the Our Services page
-app.get("/services", availibility, (req, res) => {
+app.get("/services", (req, res) => {
 	res.render("services", { title: "OUR SERVICES" });
 });
 
 // Define the route for the Our Services page
-app.get("/contact", availibility, (req, res) => {
+app.get("/contact", (req, res) => {
 	res.render("contact", { title: "CONTACT US" });
 });
 
@@ -87,5 +68,5 @@ app.use((err, req, res, next) => {
 
 // Start the server on port 3000
 app.listen(port, () => {
-	console.log(`Server is running on port ${port}`); // localhost:3000
+	console.log(`Server is running on port ${port}`); // localhost:8000
 });
