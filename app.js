@@ -66,7 +66,7 @@ app.use((err, req, res, next) => {
 	res.status(500).send("The service is not available, please try again later"); // Send a response to the client
 });
 
-// Start the server on port 3000
+// Start the server on port 8000
 app.listen(port, () => {
 	console.log(`Server is running on port ${port}`); // localhost:8000
 });
