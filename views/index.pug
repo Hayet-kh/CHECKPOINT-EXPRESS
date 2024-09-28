@@ -1,4 +1,16 @@
 extends layout 
 
 block content 
-    H1 WELCOME
+    H1 WORKPLACE TASK MANAGER
+    div 
+        p Welcome to the Workplace Task Manager. This is a simple task manager that allows you to add, edit, and delete tasks.
+    div(id='taskAdder')
+        input(type='text', id='task', placeholder='Enter a task')
+        button(id='addTask') Add a Task
+    div(id='tasks')
+        p Tasks of the day : 
+        ul(id='taskList')
+            li(class='task') Task 1
+            li(class='task') Task 2
+            li(class='task') Task 3
+
