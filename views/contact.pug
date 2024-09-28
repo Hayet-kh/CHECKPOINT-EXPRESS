@@ -2,6 +2,21 @@ extends layout
 
 block content 
     H1 #{title}
-    p This is the contact page
-    p Please contact us at 555-555-5555
-    p Or email us at
+    p We’d love to hear from you! Whether you have questions, feedback, or need assistance, feel free to reach out.
+    div(id="container-contact")
+        div(id="contact-info")
+            h3 Contact Us At:
+            ul
+                li Email: 
+                    a(href="info@example.com") info@example.com
+                li Phone: (123) 456-7890
+                li Address: 123 Main St, Lane City, New island, 12345, USA
+        div(id="social-media")
+            h3 Follow Us On:
+            ul
+                li 
+                    a(href="https://www.facebook.com") Facebook
+                li
+                    a(href="https://www.twitter.com") Twitter
+                li
+                    a(href="https://www.instagram.com") Instagram
